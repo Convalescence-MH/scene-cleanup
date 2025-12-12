@@ -25,7 +25,7 @@ def main():
             unwanted_lines.extend([line for line in lines if pattern.search(line)])
 
         # Get list of lines without any undesired patterns
-        lines = [line for line in lines if line not in unwanted_lines]
+        lines = [line if line not in unwanted_lines else "\n" for line in lines]
     
     with open("cleaned_scene.txt", "w") as outfile:
         outfile.writelines(lines)
