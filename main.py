@@ -1,6 +1,7 @@
 import re
 import yaml
 
+
 def main():
     with open("config.yaml", "r") as file:
         config = yaml.safe_load(file)
@@ -15,7 +16,14 @@ def main():
     re_dates = re.compile("\w*\d*,\s\d")
     re_edited = re.compile("\(edited\)")
 
-    patterns = [re_server_tag, re_players, re_reactions, re_commands, re_dates, re_edited]
+    patterns = [
+        re_server_tag,
+        re_players,
+        re_reactions,
+        re_commands,
+        re_dates,
+        re_edited,
+    ]
 
     with open("scene.txt", "r") as infile:
         lines = infile.readlines()
@@ -26,9 +34,10 @@ def main():
 
         # Get list of lines without any undesired patterns
         lines = [line if line not in unwanted_lines else "\n" for line in lines]
-    
+
     with open("cleaned_scene.txt", "w") as outfile:
         outfile.writelines(lines)
+
 
 if __name__ == "__main__":
     main()
